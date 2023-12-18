@@ -8,7 +8,13 @@ const Heros = () => {
             src='/documents.png'
             alt='Banner'
             fill
-            className='object-contain'
+            className='object-contain dark:hidden'
+          />
+          <Image
+            src='/documents-dark.png'
+            alt='Banner'
+            fill
+            className='object-contain hidden dark:block'
           />
         </div>
         <div className='relative h-[400px] w-[400px] hidden md:block'>
@@ -16,7 +22,13 @@ const Heros = () => {
             src='/reading.png'
             alt='reading'
             fill
-            className='object-contain'
+            className='object-contain dark:hidden'
+          />
+          <Image
+            src='/reading-dark.png'
+            alt='reading'
+            fill
+            className='object-contain dark:block hidden'
           />
         </div>
       </div>

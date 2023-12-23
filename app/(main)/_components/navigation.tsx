@@ -5,6 +5,9 @@ import { ChevronsLeft, MenuIcon } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { ElementRef, useRef, useState, useEffect } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
+import UserItem from './userItem'
+import { useQuery } from 'convex/react'
+import { api } from '@/convex/_generated/api'
 const Nagivation = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const pathname = usePathname()
@@ -13,6 +16,8 @@ const Nagivation = () => {
   const isResizingRef = useRef(false)
   const sidebarRef = useRef<ElementRef<'aside'>>(null)
   const navbarRef = useRef<ElementRef<'div'>>(null)
+
+  const notes = useQuery(api.notes.getNotes)
 
   useEffect(() => {
     if (isMobile) {
@@ -103,13 +108,12 @@ const Nagivation = () => {
           <ChevronsLeft className='h-6 w-6' />
         </div>
         <div>
-          <p>Home</p>
+          <UserItem />
         </div>
-        <div>
-          <p>Blog</p>
-        </div>
-        <div>
-          <p>Action</p>
+        <div className='mt-4'>
+          {notes?.map((note) => {
+            return <p key={note._id}>{note.title}</p>
+          })}
         </div>
         <div
           onMouseDown={handleSidebarDragMouseDown}

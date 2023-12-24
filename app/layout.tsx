@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { ConvexClientProvider } from '@/components/providers/convex.provider'
+import { Toaster } from 'sonner'
 
 const inter = Poppins({ subsets: ['latin'], weight: ['400', '600'] })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey='ideo-vault-theme'
           >
+            <Toaster position='bottom-right' />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

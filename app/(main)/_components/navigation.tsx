@@ -1,13 +1,22 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { ChevronsLeft, MenuIcon } from 'lucide-react'
+import {
+  ChevronsLeft,
+  MenuIcon,
+  PlusCircle,
+  Search,
+  Settings,
+} from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { ElementRef, useRef, useState, useEffect } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import UserItem from './userItem'
-import { useQuery } from 'convex/react'
+import { useMutation } from 'convex/react'
 import { api } from '@/convex/_generated/api'
+import { toast } from 'sonner'
+import { Item } from './item'
+import { DocumentList } from './documentList'
 const Nagivation = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const pathname = usePathname()
@@ -17,7 +26,7 @@ const Nagivation = () => {
   const sidebarRef = useRef<ElementRef<'aside'>>(null)
   const navbarRef = useRef<ElementRef<'div'>>(null)
 
-  const notes = useQuery(api.notes.getNotes)
+  const create = useMutation(api.notes.createNotes)
 
   useEffect(() => {
     if (isMobile) {
@@ -87,6 +96,15 @@ const Nagivation = () => {
     }
   }
 
+  const handleCreateNote = () => {
+    const promise = create({ title: 'Untitled' })
+    toast.promise(promise, {
+      loading: 'Creating a new note',
+      success: 'New Note created !',
+      error: 'Failed to create a new note',
+    })
+  }
+
   return (
     <>
       <aside
@@ -109,11 +127,18 @@ const Nagivation = () => {
         </div>
         <div>
           <UserItem />
+          <Item
+            icon={Search}
+            title='Search'
+            isSearch={true}
+            onClick={() => {}}
+            onSearch={() => {}}
+          />
+          <Item icon={Settings} title='Settings' onClick={() => {}} />
+          <Item onClick={handleCreateNote} icon={PlusCircle} title='New Page' />
         </div>
         <div className='mt-4'>
-          {notes?.map((note) => {
-            return <p key={note._id}>{note.title}</p>
-          })}
+          <DocumentList />
         </div>
         <div
           onMouseDown={handleSidebarDragMouseDown}

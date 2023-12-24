@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu'
+} from '@/components/ui/dropdown-menu'
 import { ChevronsLeftRight } from 'lucide-react'
 const UserItem = () => {
   const { user } = useUser()
@@ -29,7 +29,7 @@ const UserItem = () => {
           <ChevronsLeftRight className='rotate-90 ml-2 text-muted-foreground h-4 w-4' />
         </div>
       </DropdownMenuTrigger>
-      {/* <DropdownMenuContent
+      <DropdownMenuContent
         className='w-80'
         align='start'
         alignOffset={11}
@@ -59,7 +59,7 @@ const UserItem = () => {
         >
           <SignOutButton>Log out</SignOutButton>
         </DropdownMenuItem>
-      </DropdownMenuContent> */}
+      </DropdownMenuContent>
     </DropdownMenu>
   )
 }

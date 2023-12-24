@@ -13,5 +13,5 @@ export default defineSchema({
     content: v.optional(v.string()),
   })
     .index('by_user', ['userId']) // Index for faster query
-    .index('by_user_parent', ['parentDocument', 'userId']),
+    .index('by_user_parent', ['userId', 'parentDocument']),
 })

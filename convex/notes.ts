@@ -38,3 +38,29 @@ export const getNotes = query({
     return notes
   },
 })
+
+export const getSidebar = query({
+  args: {
+    parentDocument: v.optional(v.id('noteInfo')),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity()
+
+    if (!identity) {
+      throw new Error('Not authenticated')
+    }
+
+    const userId = identity.subject
+
+    const notes = await ctx.db
+      .query('noteInfo')
+      .withIndex('by_user_parent', (q) =>
+        q.eq('userId', userId).eq('parentDocument', args.parentDocument),
+      )
+      .filter((q) => q.eq(q.field('isArchived'), false))
+      .order('desc')
+      .collect()
+
+    return notes
+  },
+})

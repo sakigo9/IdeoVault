@@ -4,9 +4,11 @@ import { cn } from '@/lib/utils'
 import {
   ChevronsLeft,
   MenuIcon,
+  Plus,
   PlusCircle,
   Search,
   Settings,
+  Trash,
 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { ElementRef, useRef, useState, useEffect } from 'react'
@@ -17,6 +19,12 @@ import { api } from '@/convex/_generated/api'
 import { toast } from 'sonner'
 import { Item } from './item'
 import { DocumentList } from './documentList'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { TrashBox } from './trashBox'
 const Nagivation = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const pathname = usePathname()
@@ -139,6 +147,18 @@ const Nagivation = () => {
         </div>
         <div className='mt-4'>
           <DocumentList />
+          <Item icon={Plus} title='Add Page' onClick={handleCreateNote} />
+          <Popover>
+            <PopoverTrigger className='w-full mt-4'>
+              <Item title='Trash' icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent
+              className='p-0 w-72'
+              side={isMobile ? 'bottom' : 'right'}
+            >
+              <TrashBox />
+            </PopoverContent>
+          </Popover>
         </div>
         <div
           onMouseDown={handleSidebarDragMouseDown}

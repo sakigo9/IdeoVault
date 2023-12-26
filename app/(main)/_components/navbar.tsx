@@ -4,9 +4,10 @@ import { useParams } from 'next/navigation'
 import { useQuery } from 'convex/react'
 import { api } from '@/convex/_generated/api'
 import { Id } from '@/convex/_generated/dataModel'
-import { Menu, MenuIcon } from 'lucide-react'
+import { MenuIcon } from 'lucide-react'
 import { Title } from './title'
 import { Banner } from './banner'
+import { Menu } from './menu'
 
 interface NavbarProps {
   isCollapse: boolean
@@ -40,6 +41,9 @@ export const Navbar = ({ isCollapse, onResetWidth }: NavbarProps) => {
         <div className='flex items-center justify-between w-full'>
           {' '}
           <Title initialData={notes} />
+          <div className='flex items-center gap-x-2'>
+            <Menu noteId={notes._id} />
+          </div>
         </div>
       </nav>
       {notes.isArchived && <Banner noteId={notes._id} />}

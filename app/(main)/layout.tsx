@@ -5,6 +5,7 @@ import { useConvexAuth } from 'convex/react'
 import { Navigation } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import Navigator from './_components/navigation'
+import { SearchCommand } from '@/components/ui/search-command'
 const MainPage = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth()
   if (isLoading) {
@@ -21,7 +22,10 @@ const MainPage = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='h-full flex dark:[#1f1f1f]'>
       <Navigator />
-      <main className='h-full flex-1 overflow-y-auto'>{children}</main>
+      <main className='h-full flex-1 overflow-y-auto'>
+        <SearchCommand />
+        {children}
+      </main>
     </div>
   )
 }

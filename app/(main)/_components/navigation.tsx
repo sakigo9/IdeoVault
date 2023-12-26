@@ -25,8 +25,10 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { TrashBox } from './trashBox'
+import { useSearch } from '@/hooks/use-search'
 const Nagivation = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
+  const search = useSearch()
   const pathname = usePathname()
   const [isReset, setIsReset] = useState(false)
   const [isCollapse, setIsCollapse] = useState(isMobile)
@@ -139,8 +141,7 @@ const Nagivation = () => {
             icon={Search}
             title='Search'
             isSearch={true}
-            onClick={() => {}}
-            onSearch={() => {}}
+            onClick={search.onOpen}
           />
           <Item icon={Settings} title='Settings' onClick={() => {}} />
           <Item onClick={handleCreateNote} icon={PlusCircle} title='New Page' />

@@ -29,7 +29,7 @@ export const DocumentList = ({
     }))
   }
   const onRedirect = (documentId: string) => {
-    // routes.push(`/documents/${documentId}`)
+    routes.push(`/documents/${documentId}`)
   }
   const notes = useQuery(api.notes.getSidebar, {
     parentDocument: parentDocumentId,

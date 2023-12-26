@@ -10,7 +10,7 @@ import {
   Settings,
   Trash,
 } from 'lucide-react'
-import { usePathname } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 import { ElementRef, useRef, useState, useEffect } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import UserItem from './userItem'
@@ -27,6 +27,7 @@ import {
 import { TrashBox } from './trashBox'
 import { useSearch } from '@/hooks/use-search'
 import { UseSettings } from '@/hooks/use-setting'
+import { Navbar } from './navbar'
 const Nagivation = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const search = useSearch()
@@ -38,6 +39,7 @@ const Nagivation = () => {
   const sidebarRef = useRef<ElementRef<'aside'>>(null)
   const navbarRef = useRef<ElementRef<'div'>>(null)
   const create = useMutation(api.notes.createNotes)
+  const params = useParams()
 
   useEffect(() => {
     if (isMobile) {
@@ -176,15 +178,22 @@ const Nagivation = () => {
           isReset && 'translate-all ease-in-out duration-300',
         )}
       >
-        <nav className='bg-transparent px-3 py-2 w-full'>
-          {isCollapse && (
-            <MenuIcon
-              onClick={resetExpandSidebarWidth}
-              role='button'
-              className='h-6 w-6 text-muted-foreground'
-            />
-          )}
-        </nav>
+        {!!params.documentId ? (
+          <Navbar
+            isCollapse={isCollapse}
+            onResetWidth={resetExpandSidebarWidth}
+          />
+        ) : (
+          <nav className='bg-transparent px-3 py-2 w-full'>
+            {isCollapse && (
+              <MenuIcon
+                onClick={resetExpandSidebarWidth}
+                role='button'
+                className='h-6 w-6 text-muted-foreground'
+              />
+            )}
+          </nav>
+        )}
       </div>
     </>
   )

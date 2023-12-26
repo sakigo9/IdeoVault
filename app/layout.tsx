@@ -4,6 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { ConvexClientProvider } from '@/components/providers/convex.provider'
 import { Toaster } from 'sonner'
+import { ModalProvider } from '@/components/providers/modal-provider'
 
 const inter = Poppins({ subsets: ['latin'], weight: ['400', '600'] })
 
@@ -30,6 +31,7 @@ export default function RootLayout({
             storageKey='ideo-vault-theme'
           >
             <Toaster position='bottom-right' />
+            <ModalProvider />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

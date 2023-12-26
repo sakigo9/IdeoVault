@@ -173,7 +173,7 @@ const Nagivation = () => {
       <div
         ref={navbarRef}
         className={cn(
-          'absolute left-60 w-[calc(100%-240px) top-0 z-[99999]]',
+          'absolute left-60 w-[calc(100%-240px)] top-0 z-[99999]',
           isMobile && 'left-0 w-full',
           isReset && 'translate-all ease-in-out duration-300',
         )}

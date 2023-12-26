@@ -26,16 +26,17 @@ import {
 } from '@/components/ui/popover'
 import { TrashBox } from './trashBox'
 import { useSearch } from '@/hooks/use-search'
+import { UseSettings } from '@/hooks/use-setting'
 const Nagivation = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const search = useSearch()
+  const settings = UseSettings()
   const pathname = usePathname()
   const [isReset, setIsReset] = useState(false)
   const [isCollapse, setIsCollapse] = useState(isMobile)
   const isResizingRef = useRef(false)
   const sidebarRef = useRef<ElementRef<'aside'>>(null)
   const navbarRef = useRef<ElementRef<'div'>>(null)
-
   const create = useMutation(api.notes.createNotes)
 
   useEffect(() => {
@@ -143,7 +144,7 @@ const Nagivation = () => {
             isSearch={true}
             onClick={search.onOpen}
           />
-          <Item icon={Settings} title='Settings' onClick={() => {}} />
+          <Item icon={Settings} title='Settings' onClick={settings.onOpen} />
           <Item onClick={handleCreateNote} icon={PlusCircle} title='New Page' />
         </div>
         <div className='mt-4'>

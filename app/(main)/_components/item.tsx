@@ -67,7 +67,7 @@ export const Item = ({
   ) => {
     event.stopPropagation()
     if (!id) return
-    const promise = createNote({ title: 'Untilted', parentDocument: id }).then(
+    const promise = createNote({ title: 'Untitled', parentDocument: id }).then(
       (noteId) => {
         if (!expanded) {
           onExpand?.()
@@ -84,7 +84,7 @@ export const Item = ({
 
   const onArchieve = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!id) return
-    const promise = archieve({ id })
+    const promise = archieve({ id }).then((noteId) => router.push(`/documents`))
     toast.promise(promise, {
       loading: 'Moving note to archieve',
       success: 'Note Moved inside bin !',

@@ -10,7 +10,7 @@ import {
   Settings,
   Trash,
 } from 'lucide-react'
-import { useParams, usePathname } from 'next/navigation'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 import { ElementRef, useRef, useState, useEffect } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import UserItem from './userItem'
@@ -40,6 +40,7 @@ const Nagivation = () => {
   const navbarRef = useRef<ElementRef<'div'>>(null)
   const create = useMutation(api.notes.createNotes)
   const params = useParams()
+  const router = useRouter()
 
   useEffect(() => {
     if (isMobile) {
@@ -110,7 +111,9 @@ const Nagivation = () => {
   }
 
   const handleCreateNote = () => {
-    const promise = create({ title: 'Untitled' })
+    const promise = create({ title: 'Untitled' }).then((noteId) =>
+      router.push(`/documents/${noteId}`),
+    )
     toast.promise(promise, {
       loading: 'Creating a new note',
       success: 'New Note created !',

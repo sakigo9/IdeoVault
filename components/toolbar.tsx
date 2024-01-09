@@ -1,5 +1,5 @@
 'use client'
-
+import React from 'react'
 import { ElementRef, useRef, useState } from 'react'
 import { ImageIcon, Smile, X } from 'lucide-react'
 import { useMutation } from 'convex/react'

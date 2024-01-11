@@ -181,7 +181,7 @@ const Nagivation = () => {
           isReset && 'translate-all ease-in-out duration-300',
         )}
       >
-        {!!params.documentId ? (
+        {params.documentId ? (
           <Navbar
             isCollapse={isCollapse}
             onResetWidth={resetExpandSidebarWidth}

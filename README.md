@@ -9,10 +9,15 @@ All-in-one workspace platform that combines note-taking, document sharing, task 
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- Convex
+- Clerk Auth
+- Shadcn
 
 ## Features
 
-- [List key features of your app]
+- Created an Modern workspace application for note-taking, document sharing, and task management.
+- Implemented secure user data handling through Clerk authentication, facilitating note operations (create, update, delete) using Convex.
+- Delivered a seamless user experience with a fully mobile-responsive and visually appealing layout, utilizing TailwindCSS and Shadcn UI.
 
 ## Getting Started
 

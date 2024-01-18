@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: 'IdeoVault',
   description:
     'All-in-one workspace platform that combines note-taking, document sharing, task management,etc.',
+  icons: {
+    icon: [{ url: '/ideo-vault.svg' }],
+  },
 }
 
 export default function RootLayout({
